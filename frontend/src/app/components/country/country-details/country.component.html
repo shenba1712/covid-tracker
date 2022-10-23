@@ -1,0 +1,13 @@
+<div class="container-fluid" *ngIf="countryStats">
+  <div class="text-center">
+    <h1>{{countryStats?.countryName}}</h1>
+    <h5>(Last Updated: {{countryStats?.lastUpdatedDate | date}})</h5>
+    <app-stats-counter (statName)="getChart($event)" [stats]="countryStats?.total"></app-stats-counter>
+    <app-chart *ngIf="chartData" [data]="chartData.chartData"></app-chart>
+      <div *ngIf="isIndia">
+        <app-search-bar (query)="onQueryChange($event)"></app-search-bar>
+        <app-indian-states-counter [setStates]="states"></app-indian-states-counter>
+      </div>
+    <button type="button" class="m-3 btn btn-info" (click)="goBack()">Go Back</button>
+  </div>
+</div>

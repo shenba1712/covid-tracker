@@ -1,0 +1,8 @@
+<!-- Terminal -->
+<div class="terminal">
+  <pre>{{resource.organisation}}</pre>
+  <pre>Category: {{resource.category}}</pre>
+  <pre>{{resource.description}}</pre>
+  <pre>Telephone number: <a [href]="'tel:+91' + resource.phoneNumber">+91 {{resource.phoneNumber}}</a></pre>
+  <pre>Contact: <a [href]="resource.contact" style="color: yellow" target="_blank">{{resource.contact}}</a></pre>
+</div>

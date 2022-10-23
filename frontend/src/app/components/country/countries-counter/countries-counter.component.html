@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <ng-container *ngIf="countries?.length; else noCountries">
+    <div class="row p-3">
+        <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let country of pagedList">
+          <div class="card text-center mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{country.countryName}}</h2>
+              <div class="card-text">
+                <div>
+                  <span>Confirmed: {{country?.total.confirmed}}</span>
+                </div>
+                <div>
+                  <span>Active: {{country.total.active}}</span>
+                </div>
+                <div>
+                  <span>Deceased: {{country.total.deceased}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <button (click)="getMoreInfo(country.countryName)" class="btn btn-secondary">More Info</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <mat-paginator [length]="countries?.length"
+                   [pageSize]="15"
+                   [pageSizeOptions]="[15, 30, 60, 120]"
+                   [showFirstLastButtons]="true"
+                   (page)="pageEvent($event)">
+    </mat-paginator>
+  </ng-container>
+  <ng-template #noCountries>
+    <ng-container *ngIf="countries?.length == 0">
+      <mat-card>Sorry, there are no matches for your query. Try again with some other value.</mat-card>
+    </ng-container>
+    <ng-container *ngIf="!countries">
+      <mat-spinner style="margin: 0 auto"></mat-spinner>
+    </ng-container>
+  </ng-template>
+</div>

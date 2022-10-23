@@ -1,0 +1,25 @@
+<div class="container-fluid" *ngIf="resources?.length > 0; else emptyList">
+    <div class="row">
+      <div class="col-md-12" *ngFor="let resource of resources">
+        <div class="card text-center mb-3">
+          <div class="card-body">
+            <h1 class="card-title">{{resource.city}}</h1>
+            <h2 class="card-text">
+              <app-terminal [resource]="resource"></app-terminal>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<ng-template #emptyList>
+  <ng-container>
+    <div class="jumbotron">
+      <h1 class="display-4">Sorry!</h1>
+      <p class="lead">There is no information about important resources in
+        <span *ngIf="districtName">{{districtName | titlecase}},</span> {{stateName | titlecase}}
+      </p>
+      <hr class="my-4">
+    </div>
+  </ng-container>
+</ng-template>

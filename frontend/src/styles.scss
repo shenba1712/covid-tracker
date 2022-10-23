@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: whitesmoke;
+}
+
+.bg-purple {
+  background-color: purple;
+  color: white;
+}
+
+.introjs-helperLayer::before {
+  position: absolute !important;
+  margin-top: -10px !important;
+}
+
+.introjs-helperLayer {
+  background-color: transparent !important;
+}
+
+.introjs-fixParent {
+  z-index: 1031 !important;
+}
+
+.introjs-overlay {
+  opacity: 0 !important;
+  z-index: 99999999 !important;
+}
+
+.introjs-tooltip {
+  border-radius: 0.5rem;
+  color: white;
+  background-color: grey !important;
+  margin-bottom: 10px;
+}
+
+.introjs-helperLayer:before {
+  content: '';
+  position: fixed;
+  width: inherit;
+  height: inherit;
+  border-radius: 0.3em;
+  box-shadow: 0 0 0 1000em rgba(0,0,0, .7);
+  opacity: 1;
+}
+
+.introjs-helperLayer:after {
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+}

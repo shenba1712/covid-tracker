@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row">
+    <div [ngClass]="isIndia ? 'col-md-3' : 'col-md-4'">
+      <div class="card text-center mb-3" (click)="getChartData('confirmed')"
+           style="cursor: pointer"
+           [ngClass]="setClass(stats?.delta?.recovered, active?.confirmed)">
+        <div class="card-body">
+          <h1 class="card-title" [style.color]="active?.confirmed ? 'white': 'black'">Confirmed</h1>
+          <h2 class="card-text" [style.color]="active?.confirmed ? 'white': 'black'">{{stats?.confirmed}} <br>
+            <span class="badge" [ngClass]="stats?.delta?.confirmed > 0 ? 'badge-danger' : 'badge-success'">
+              {{stats?.delta?.confirmed}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="isIndia ? 'col-md-3' : 'col-md-4'">
+      <div class="card text-center mb-3" (click)="getChartData('active')"
+           style="cursor: pointer"
+           [ngClass]="setClass(stats?.delta?.recovered, active?.active)">
+        <div class="card-body">
+          <h1 class="card-title" [style.color]="active?.active ? 'white': 'black'">Active</h1>
+          <h2 class="card-text" [style.color]="active?.active ? 'white': 'black'">{{stats?.active}} <br>
+            <span class="badge" [ngClass]="stats?.delta?.active > 0 ? 'badge-danger' : 'badge-success'">
+              {{stats?.delta?.active}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="isIndia ? 'col-md-3' : 'col-md-4'">
+      <div class="card text-center mb-3" (click)="getChartData('deceased')"
+           style="cursor: pointer"
+           [ngClass]="setClass(stats?.delta?.recovered, active?.deceased)">
+        <div class="card-body">
+          <h1 class="card-title" [style.color]="active?.deceased ? 'white': 'black'">Deceased</h1>
+          <h2 class="card-text" [style.color]="active?.deceased ? 'white': 'black'">{{stats?.deceased}} <br>
+            <span class="badge" [ngClass]="stats?.delta?.deceased > 0 ? 'badge-danger' : 'badge-success'">
+              {{stats?.delta?.deceased}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div [ngClass]="isIndia ? 'col-md-3' : 'col-md-4'" *ngIf="isIndia">
+      <div class="card text-center mb-3" (click)="getChartData('recovered')"
+           style="cursor: pointer"
+           [ngClass]="setRecoveredClass(stats?.delta?.recovered, active?.recovered)">
+        <div class="card-body">
+          <h1 class="card-title" [style.color]="active?.recovered ? 'white': 'black'">Recovered</h1>
+          <h2 class="card-text" [style.color]="active?.recovered ? 'white': 'black'">{{stats?.recovered}} <br>
+            <span class="badge" [ngClass]="setRecoveredBadgeClass(stats?.delta?.recovered)">
+              {{stats?.delta?.recovered}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

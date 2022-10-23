@@ -1,0 +1,31 @@
+<div class="container-fluid" *ngIf="stateStats">
+  <div class="text-center">
+    <h1>{{stateStats?.stateName}}</h1>
+    <h5>(Last Updated: {{stateStats?.lastUpdatedDate | date}})</h5>
+    <app-stats-counter (statName)="getChart($event)" [stats]="stateStats?.total" isIndia="true"></app-stats-counter>
+    <app-chart *ngIf="chartData" [data]="chartData.chartData"></app-chart>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Resources List
+          </mat-panel-title>
+          <mat-panel-description>
+            Important places during the pandemic
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-resources-map *ngIf="stateStats" [stateName] = "stateStats?.stateName"></app-resources-map>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Search for district info
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-search-bar (query)="onQueryChange($event)"></app-search-bar>
+        <app-indian-district-counter [state]="stateStats?.stateName" [setDistricts]="districts"></app-indian-district-counter>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <button type="button" class="m-3 btn btn-info" (click)="goBack()">Go Back</button>
+  </div>
+</div>

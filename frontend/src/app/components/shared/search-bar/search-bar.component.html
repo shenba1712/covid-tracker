@@ -1,0 +1,10 @@
+<div class="container-fluid mt-3">
+  <mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText" (keyup.enter)="onSearch()" placeholder="{{text}}" aria-label="Search">
+    <button mat-icon-button matSuffix (click)="onSearch()" [attr.aria-label]="'Search'">
+      <mat-icon matSuffix>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+

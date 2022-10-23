@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="card text-center mb-3">
+    <div class="card-body">
+      <h2 class="card-title" style="font-size: x-large">Welcome to COVID-19 Tracker!</h2>
+      <div class="card-text">
+        <div style="font-size: large">
+          <p>Please click on the button to start a short tour on the features of this app</p>
+          <p>
+            <strong style="color: darkred; font-size: larger">UPDATE:</strong>
+            Head to <a routerLink="/country/india">India</a> to get detailed information about Indian states and districts
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <button (click)="startTour()" class="btn btn-secondary">Start Tour</button>
+    </div>
+  </div>
+  <app-stats-counter id="step1" data-step="step1" (statName)="getChart($event)" [stats]="globalStats?.total"></app-stats-counter>
+  <app-chart *ngIf="chartData" [data]="chartData.chartData"></app-chart>
+  <app-search-bar data-step="step2" id="step2" (query)="onQueryChange($event)"></app-search-bar>
+  <app-countries-counter data-step="step3" id="step3" [setCountries]="countries"></app-countries-counter>
+</div>

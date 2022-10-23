@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <ng-container *ngIf="districts?.length; else noDistricts">
+    <div class="row p-3">
+      <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let district of pagedList">
+        <div class="card text-center mb-3" [ngClass]="setBorder(district?.zone, 'border')">
+          <div class="card-body">
+            <h2 class="card-title">{{district.districtName}}</h2>
+            <div class="card-text">
+              <div>
+                <span>Confirmed: {{district?.total.confirmed}}</span>
+              </div>
+              <div>
+                <span>Active: {{district.total.active}}</span>
+              </div>
+              <div>
+                <span>Deceased: {{district.total.deceased}}</span>
+              </div>
+              <div>
+                <span>Recovered: {{district.total.recovered}}</span>
+              </div>
+              <div *ngIf="district?.zone">
+                <span>Zone: {{district.zone}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <button (click)="getMoreInfo(district.districtName)" class="btn btn-secondary">More Info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <mat-paginator [length]="districts?.length"
+                   [pageSize]="15"
+                   [pageSizeOptions]="[15, 30]"
+                   [showFirstLastButtons]="true"
+                   (page)="pageEvent($event)">
+    </mat-paginator>
+  </ng-container>
+
+  <ng-template #noDistricts>
+    <ng-container *ngIf="districts?.length == 0">
+      <mat-card>Sorry, there are no matches for your query. Try again with some other value.</mat-card>
+    </ng-container>
+    <ng-container *ngIf="!districts">
+      <mat-spinner style="margin: 0 auto"></mat-spinner>
+    </ng-container>
+  </ng-template>
+
+</div>
+
+

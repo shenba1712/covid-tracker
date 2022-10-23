@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <ng-container *ngIf="states?.length; else noStates">
+    <div class="row p-3">
+      <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let state of pagedList">
+        <div class="card text-center mb-3">
+          <div class="card-body">
+            <h2 class="card-title">{{state.stateName}}</h2>
+            <div class="card-text">
+              <div>
+                <span>Confirmed: {{state?.total.confirmed}}</span>
+              </div>
+              <div>
+                <span>Active: {{state.total.active}}</span>
+              </div>
+              <div>
+                <span>Deceased: {{state.total.deceased}}</span>
+              </div>
+              <div>
+                <span>Recovered: {{state.total.recovered}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <button (click)="getMoreInfo(state.stateName)" class="btn btn-secondary">More Info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <mat-paginator [length]="states?.length"
+                   [pageSize]="15"
+                   [pageSizeOptions]="[15, 30]"
+                   [showFirstLastButtons]="true"
+                   (page)="pageEvent($event)">
+    </mat-paginator>
+  </ng-container>
+  <ng-template #noStates>
+    <ng-container *ngIf="states?.length == 0">
+      <mat-card>Sorry, there are no matches for your query. Try again with some other value.</mat-card>
+    </ng-container>
+    <ng-container *ngIf="!states">
+      <mat-spinner style="margin: 0 auto"></mat-spinner>
+    </ng-container>
+  </ng-template>
+
+</div>
+
